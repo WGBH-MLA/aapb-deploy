@@ -1,0 +1,33 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: public-ratelimit
+spec:
+  rateLimit:
+    average: 15
+    burst: 30
+    # sourceCriterion:
+    # requestHost: true
+    # ipStrategy:
+    #   depth: 2
+    # excludedIPs:
+    #   - 10.0.0.0/16
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: private-ratelimit
+spec:
+  rateLimit:
+    average: 50
+    burst: 100
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: inflightreq
+spec:
+  inFlightReq:
+    amount: 20
