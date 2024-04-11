@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: aapb-config
 data:
-  RAILS_ENV: production
+  RAILS_ENV: development

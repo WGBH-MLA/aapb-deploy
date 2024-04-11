@@ -31,5 +31,3 @@ spec:
           envFrom:
             - configMapRef:
                 name: aapb-config
-            - secretRef:
-                name: aapb-secret
