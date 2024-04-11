@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  labels:
+    app: aapb
+  name: aapb
+
+spec:
+  selector:
+    matchLabels:
+      app: aapb
+
+  template:
+    metadata:
+      labels:
+        app: aapb
+
+    spec:
+      containers:
+        - image: 'ghcr.io/wgbh-mla/aapb2:master'
+          imagePullPolicy: Always
+          name: aapb
+          resources:
+            limits:
+              cpu: '2'
+              memory: 2Gi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          envFrom:
+            - configMapRef:
+                name: aapb-config
+            - secretRef:
+                name: aapb-secret
