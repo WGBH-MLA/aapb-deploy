@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: aapb-ingress
+
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`demo.wgbh-mla.org`)
