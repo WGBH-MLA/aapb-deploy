@@ -18,9 +18,12 @@ spec:
 
     spec:
       containers:
-        - image: 'ghcr.io/wgbh-mla/aapb2:master'
+        - name: aapb
+          image: 'ghcr.io/wgbh-mla/aapb2:pr-2749'
           imagePullPolicy: Always
-          name: aapb
+          volumeMounts:
+            - mountPath: /log
+              name: logs
           resources:
             limits:
               cpu: '2'
@@ -31,3 +34,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: aapb-config
+      volumes:
+        - name: logs
+          persistentVolumeClaim:
+            claimName: logs-pvc

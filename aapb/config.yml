@@ -4,3 +4,4 @@ metadata:
   name: aapb-config
 data:
   RAILS_ENV: production
+  AAPB_LOG: /log/production.log
