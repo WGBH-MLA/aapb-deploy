@@ -24,6 +24,8 @@ spec:
           volumeMounts:
             - mountPath: /log
               name: logs
+            - mountPath: /usr/src/app/jetty
+              name: jetty
           resources:
             limits:
               cpu: '2'
@@ -38,3 +40,6 @@ spec:
         - name: logs
           persistentVolumeClaim:
             claimName: logs-pvc
+        - name: jetty
+          persistentVolumeClaim:
+            claimName: jetty-pvc
