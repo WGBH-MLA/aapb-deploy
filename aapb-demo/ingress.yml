@@ -7,3 +7,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`demo.wgbh-mla.org`)
+      services:
+        - kind: Service
+          name: aapb
+          port: 80
+      middlewares:
+        - name: public-ratelimit
