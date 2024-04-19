@@ -21,7 +21,19 @@ spec:
         - name: solr
           image: 'ghcr.io/wgbh-mla/aapb2:pr-2749'
           command: ['bash']
-          args: ['-c', 'rake', 'jetty:start', '&']
+          args:
+            [
+              '-c',
+              'rake',
+              'jetty:clean',
+              '&&',
+              'rake',
+              'jetty:config',
+              '&&',
+              'rake',
+              'jetty:start',
+              '&',
+            ]
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /usr/src/app/jetty
