@@ -20,8 +20,8 @@ spec:
       containers:
         - name: solr
           image: 'ghcr.io/wgbh-mla/aapb2:pr-2749'
-          command: ['nohup']
-          args: ['rake', 'jetty:start']
+          command: ['bash']
+          args: ['-c', 'rake', 'jetty:start', '&']
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /usr/src/app/jetty
