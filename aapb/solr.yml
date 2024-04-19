@@ -3,29 +3,29 @@ kind: Deployment
 
 metadata:
   labels:
-    app: aapb
-  name: aapb
+    app: solr
+  name: solr
 
 spec:
   selector:
     matchLabels:
-      app: aapb
+      app: solr
 
   template:
     metadata:
       labels:
-        app: aapb
+        app: solr
 
     spec:
       containers:
-        - name: aapb
+        - name: solr
           image: 'ghcr.io/wgbh-mla/aapb2:pr-2749'
-          command: ['bundle']
-          args: ['exec', 'rails', 's', '-b', '0.0.0.0']
+          command: ['nohup']
+          args: ['rake', 'jetty:start']
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: /log
-              name: logs
+            - mountPath: /usr/src/app/jetty
+              name: jetty
           resources:
             limits:
               cpu: '2'
@@ -33,10 +33,20 @@ spec:
             requests:
               cpu: 100m
               memory: 100Mi
-          envFrom:
-            - configMapRef:
-                name: aapb-config
       volumes:
-        - name: logs
+        - name: jetty
           persistentVolumeClaim:
-            claimName: logs-pvc
+            claimName: jetty-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solr
+spec:
+  selector:
+    app: solr
+  ports:
+    - protocol: TCP
+      name: web
+      port: 80
+      targetPort: 8983
