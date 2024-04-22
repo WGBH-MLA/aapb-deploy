@@ -20,12 +20,16 @@ spec:
       containers:
         - name: aapb
           image: 'ghcr.io/wgbh-mla/aapb2:pr-2749'
-          command: ['bundle']
-          args: ['exec', 'rails', 's', '-b', '0.0.0.0']
+          command: ['bash']
+          args: ['-c', 'rake db:migrate && bundle exec rails s -b 0.0.0.0']
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /log
               name: logs
+            - name: ci-secret
+              mountPath: /usr/src/app/config/ci.yml
+              subPath: ci.yml
+              readOnly: true
           resources:
             limits:
               cpu: '2'
@@ -36,7 +40,15 @@ spec:
           envFrom:
             - configMapRef:
                 name: aapb-config
+            - secretRef:
+                name: ci-secret
       volumes:
         - name: logs
           persistentVolumeClaim:
             claimName: logs-pvc
+        - name: ci-secret
+          secret:
+            secretName: ci-secret
+            items:
+              - key: ci.yml
+                path: ci.yml
