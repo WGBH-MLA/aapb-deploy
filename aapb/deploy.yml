@@ -24,8 +24,10 @@ spec:
           args: ['-c', 'rake db:migrate && bundle exec rails s -b 0.0.0.0']
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: /log
-              name: logs
+            - name: jetty
+              mountPath: /usr/src/app/jetty
+            - name: logs
+              mountPath: /log
             - name: ci-secret
               mountPath: /usr/src/app/config/ci.yml
               subPath: ci.yml
@@ -52,3 +54,6 @@ spec:
             items:
               - key: ci.yml
                 path: ci.yml
+        - name: jetty
+          persistentVolumeClaim:
+            claimName: jetty-pvc

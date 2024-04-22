@@ -24,8 +24,8 @@ spec:
           args: ['-c', 'cd jetty && java -jar start.jar']
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: /usr/src/app/jetty
-              name: jetty
+            - name: jetty
+              mountPath: /usr/src/app/jetty
           resources:
             limits:
               cpu: '2'
