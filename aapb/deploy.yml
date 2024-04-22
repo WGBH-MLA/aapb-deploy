@@ -20,8 +20,8 @@ spec:
       containers:
         - name: aapb
           image: 'ghcr.io/wgbh-mla/aapb2:pr-2749'
-          command: ['bash']
-          args: ['-c', 'rake db:migrate && bundle exec rails s -b 0.0.0.0']
+          command: ['rails']
+          args: ['s', '-b', '0.0.0.0']
           imagePullPolicy: Always
           volumeMounts:
             - name: jetty
