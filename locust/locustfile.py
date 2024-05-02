@@ -73,7 +73,7 @@ class AAPBUser(HttpUser):
             'whats-new',
             'projects',
             'funding',
-            'advistory-committees',
+            'advisory-committees',
             'newsletter',
             'volunteer',
             'podcast',
