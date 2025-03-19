@@ -13,3 +13,5 @@ spec:
           port: 443
       middlewares:
         - name: public-ratelimit
+  tls:
+    secretName: aapb-tls-demo
