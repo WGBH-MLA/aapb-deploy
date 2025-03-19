@@ -17,6 +17,7 @@ spec:
         app: aapb
 
     spec:
+      replicas: 0
       containers:
         - name: aapb
           image: 'ghcr.io/wgbh-mla/aapb2:pr-2749'

@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: aapb-tls
+  namespace: aapb
+spec:
+  secretName: aapb-tls
+  dnsNames:
+    - americanarchive.org
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer

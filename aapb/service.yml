@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: aapb
 spec:
-  selector:
-    app: aapb
+  type: ExternalName
+  externalName: aapb-prod.wgbh-mla.org
   ports:
     - protocol: TCP
       name: web
-      port: 80
-      targetPort: 3000
+      port: 443
+      targetPort: 443

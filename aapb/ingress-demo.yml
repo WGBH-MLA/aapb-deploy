@@ -6,10 +6,10 @@ metadata:
 spec:
   routes:
     - kind: Rule
-      match: Host(`demo.wgbh-mla.org`)
+      match: Host(`demo.aapb.wgbh-mla.org`)
       services:
         - kind: Service
           name: aapb
-          port: 80
+          port: 443
       middlewares:
         - name: public-ratelimit
