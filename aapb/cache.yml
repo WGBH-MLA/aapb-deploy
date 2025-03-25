@@ -6,3 +6,4 @@ spec:
   plugin:
     simple-cache:
       path: /tmp
+      maxExpiry: 600
