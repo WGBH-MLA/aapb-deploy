@@ -1,0 +1,87 @@
+global:
+  host: dev.wgbh-mla.org
+  frontend:
+    # Name of the frontend service
+    name: frontend
+app-template:
+  controllers:
+    # frontend deployment: Remix web application
+    frontend:
+      containers:
+        remix: 
+          image:
+            repository: ghcr.io/wgbh-mla/dream-aapb
+            tag: main
+          envFrom:
+            - configMap: '{{ template "openvault.frontend.fullname" . }}-config'
+            - secretRef:
+                name: '{{ template "openvault.frontend.fullname" . }}-secret'
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                periodSeconds: 30
+                httpGet:
+                  path: /health
+                  port: 3000
+            startup:
+              enabled: true
+              custom: true
+              spec:
+                initialDelaySeconds: 3
+                periodSeconds: 3
+                failureThreshold: 10
+                httpGet:
+                  path: /health
+                  port: 3000
+      defaultContainerOptionsStrategy: merge
+      defaultContainerOptions:
+        image:
+          pullPolicy: Always
+        resources:
+          limits:
+            cpu: '1'
+            memory: 1Gi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+  service:
+    frontend:
+      controller: frontend
+      ports:
+        http:
+          port: 80
+          targetPort: 3000
+  ingress:
+    frontend:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+        - host: '{{ template "aapb.url" . }}'
+          paths:
+            - path: /
+              service:
+                identifier: frontend
+            - path: /accounts
+              service:
+                identifier: backend
+            - path: /authorize
+              service:
+                identifier: backend
+            - path: /admin
+              service:
+                identifier: backend
+            - path: /login
+              service:
+                identifier: backend
+            - path: /logout
+              service:
+                identifier: backend
+      tls:
+        - secretName: '{{ template "aapb.name" . }}-tls'
+          hosts:
+            - '{{ template "aapb.url" . }}'
+
+# Override the name generator for object in the release. default {{ .Release.Name }}
+nameOverride: null
