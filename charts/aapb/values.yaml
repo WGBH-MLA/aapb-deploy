@@ -12,10 +12,17 @@ app-template:
           image:
             repository: ghcr.io/wgbh-mla/dream-aapb
             tag: main
-          envFrom:
-            - configMap: '{{ template "aapb.frontend.fullname" . }}-config'
-            - secretRef:
-                name: '{{ template "aapb.frontend.fullname" . }}-secret'
+          env:
+          - name: NODE_ENV
+            value: production
+          - name: AAPB_API_URL
+            value: 'http://api.aapb'
+          - name: ES_URL
+            value: 'http://elastic.elastic'
+          - name: ES_INDEX
+            value: aapb
+          - name: ORGAN_URL
+            value: 'http://organ.organ'
           probes:
             liveness:
               enabled: true
@@ -67,21 +74,6 @@ app-template:
         - secretName: '{{ template "aapb.name" . }}-tls'
           hosts:
             - '{{ template "aapb.url" . }}'
-  persistence:
-    config:
-      type: configMap
-      name: '{{ template "aapb.frontend.fullname" . }}-config'
-      items:
-        - NODE_ENV: production
-        - AAPB_API_URL: 'http://api.aapb'
-        - ES_URL: 'http://elastic.elastic'
-        - ES_INDEX: 'aapb'
-        - ORGAN_URL: 'http://organ.organ'
-    keys:
-      type: secret
-      name: '{{ template "aapb.frontend.fullname" . }}-secret'
-      items:
-        - AAPB_COOKIE_CONSENT_ID: ''
-        - ES_API_KEY: ''
+
 # Override the name generator for object in the release. default {{ .Release.Name }}
 nameOverride: null
