@@ -47,8 +47,10 @@ app-template:
       data:
         NODE_ENV: production
         AAPB_API_URL: 'http://api.aapb'
-        ES_URL: 'http://elastic.elastic'
+        AAPB_COOKIE_CONSENT_ID: null
+        ES_API_KEY: null
         ES_INDEX: aapb
+        ES_URL: 'http://elastic.elastic'
         ORGAN_URL: 'http://organ.organ'
   service:
     frontend:
