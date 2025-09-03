@@ -13,12 +13,12 @@ Create the frontend name: ReleaseName-frontendName
 {{- end -}}
 
 {{/*
-Create the frontend url: ReleaseName.domain
+Create the frontend url: ReleaseName.host
 */}}
 {{- define "aapb.url" -}}
 {{- if .Values.global.url -}}
 {{- .Values.global.url -}}
 {{- else -}}
-{{- printf "%s.%s" (include "aapb.name" .) .Values.global.domain -}}
+{{- printf "%s.%s" (include "aapb.name" .) .Values.global.host -}}
 {{- end -}}
 {{- end -}}
