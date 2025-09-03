@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: aapb-config
-data:
-  RAILS_ENV: production
-  AAPB_LOG: /log/production.log
-  SOLR_URL: http://solr:/solr/
