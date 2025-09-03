@@ -7,8 +7,8 @@ app-template:
       containers:
         main: 
           envFrom:
-            - configMapRef:
-                identifier: frontend
+          - configMapRef:
+              identifier: frontend
           image:
             repository: ghcr.io/wgbh-mla/dream-aapb
             tag: main
@@ -47,8 +47,8 @@ app-template:
       data:
         NODE_ENV: production
         AAPB_API_URL: 'http://api.aapb'
-        AAPB_COOKIE_CONSENT_ID: null
-        ES_API_KEY: null
+        AAPB_COOKIE_CONSENT_ID: ''
+        ES_API_KEY: ''
         ES_INDEX: aapb
         ES_URL: 'http://elastic.elastic'
         ORGAN_URL: 'http://organ.organ'
@@ -64,15 +64,15 @@ app-template:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
-        - host: '{{ template "aapb.url" . }}'
-          paths:
-            - path: /
-              service:
-                identifier: frontend
+      - host: '{{ template "aapb.url" . }}'
+        paths:
+        - path: /
+          service:
+            identifier: frontend
       tls:
-        - secretName: '{{ template "aapb.name" . }}-tls'
-          hosts:
-            - '{{ template "aapb.url" . }}'
+      - secretName: '{{ template "aapb.name" . }}-tls'
+        hosts:
+        - '{{ template "aapb.url" . }}'
 
 # Override the name generator for object in the release. default {{ .Release.Name }}
 nameOverride: null
