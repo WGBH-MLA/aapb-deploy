@@ -6,13 +6,6 @@ Create the name of the chart: ReleaseName or nameOverride
 {{- end -}}
 
 {{/*
-Create the frontend name: ReleaseName-frontendName
-*/}}
-{{- define "aapb.frontend.fullname" -}}
-{{- printf "%s-%s" (include "aapb.name" .) .Values.global.frontend.name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-
-{{/*
 Create the frontend url: ReleaseName.host
 */}}
 {{- define "aapb.url" -}}

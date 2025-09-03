@@ -1,28 +1,17 @@
 global:
   host: dev.wgbh-mla.org
-  frontend:
-    # Name of the frontend service
-    name: frontend
 app-template:
   controllers:
     # frontend deployment: Remix web application
     frontend:
       containers:
-        remix: 
+        main: 
+          envFrom:
+            - configMapRef:
+                identifier: frontend
           image:
             repository: ghcr.io/wgbh-mla/dream-aapb
             tag: main
-          env:
-          - name: NODE_ENV
-            value: production
-          - name: AAPB_API_URL
-            value: 'http://api.aapb'
-          - name: ES_URL
-            value: 'http://elastic.elastic'
-          - name: ES_INDEX
-            value: aapb
-          - name: ORGAN_URL
-            value: 'http://organ.organ'
           probes:
             liveness:
               enabled: true
@@ -53,6 +42,14 @@ app-template:
           requests:
             cpu: 50m
             memory: 50Mi
+  configMaps:
+    frontend:
+      data:
+        NODE_ENV: production
+        AAPB_API_URL: 'http://api.aapb'
+        ES_URL: 'http://elastic.elastic'
+        ES_INDEX: aapb
+        ORGAN_URL: 'http://organ.organ'
   service:
     frontend:
       controller: frontend
