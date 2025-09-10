@@ -5,13 +5,14 @@ repo_url: https://github.com/WGBH-MLA/aapb-deploy/
 
 markdown_extensions:
   - admonition
+  - attr_list
   - def_list
   - footnotes
   - md_in_html
   - meta
+  - pymdownx.blocks.caption
   - pymdownx.caret
   - pymdownx.details
-  - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -77,6 +78,7 @@ plugins:
   - git-revision-date-localized:
       type: timeago
       enable_creation_date: true
+  - glightbox
   - privacy
 extra:
   social:
@@ -94,4 +96,3 @@ extra_css:
   - style/github.css
   - style/kube.css
   - style/todo.css
-  - style/traefik.css
