@@ -9,6 +9,7 @@ on:
       - pyproject.toml
       - mkdocs.yml
       - uv.lock
+  workflow_dispatch:
 
 concurrency:
   group: publish-pages
