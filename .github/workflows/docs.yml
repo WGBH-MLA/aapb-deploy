@@ -7,8 +7,8 @@ on:
     paths:
       - docs/**
       - pyproject.toml
-      - pdm.lock
       - mkdocs.yml
+      - uv.lock
 
 concurrency:
   group: publish-pages
