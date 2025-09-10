@@ -1,5 +1,15 @@
+# Build and deploy the documentation to GitHub Pages
 name: docs
 on:
+  pull_request:
+    branches:
+      - main
+      - docs
+    paths:
+      - docs/**
+      - pyproject.toml
+      - mkdocs.yml
+      - uv.lock
   push:
     branches:
       - main
