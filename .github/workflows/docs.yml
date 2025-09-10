@@ -27,8 +27,11 @@ jobs:
         with:
           python-version: 3.x
 
+      - name: 😎 Install uv
+        uses: astral-sh/setup-uv@v6
+
       - name: 🚧 Install dependencies
-        run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mike
+        run: uv sync --group docs
 
       - name: 🛠 Configure Git
         run: |
