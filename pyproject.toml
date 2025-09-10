@@ -1,0 +1,25 @@
+[project]
+name = 'aapb-deploy'
+description = 'AAPB Deployment Tools'
+authors = [{ name = 'WGBH-MLA', email = 'ryan_harbert@wgbh.org' }]
+version = '0.0.1'
+readme = 'README.md'
+license = { text = 'MIT' }
+dependencies = []
+requires-python = '>=3.10,<4.0'
+
+[project.urls]
+documentation = 'https://wgbh-mla.github.io/aapb-deploy/'
+homepage = 'https://github.com/WGBH-MLA/aapb-deploy'
+repository = 'https://github.com/WGBH-MLA/aapb-deploy'
+
+[dependency-groups]
+docs = [
+  "mkdocs~=1.6",
+  "mkdocs-material~=9.6",
+  "mike~=2.1",
+  "mkdocstrings[python]~=0.29",
+  "mkdocs-git-revision-date-localized-plugin~=1.4",
+  "mkdocs-jupyter~=0.25",
+  "mkdocs-awesome-nav>=3.1.2",
+]
