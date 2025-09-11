@@ -1,0 +1,98 @@
+site_name: 'AAPB Deploy'
+site_description: AAPB deployment documentation
+site_url: https://wgbh-mla.github.io/aapb-deploy/
+repo_url: https://github.com/WGBH-MLA/aapb-deploy/
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta
+  - pymdownx.blocks.caption
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 4
+
+theme:
+  name: material
+  logo: assets/aapb-logo.png
+  favicon: assets/aapb-logo-mobile.png
+
+  palette:
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+  features:
+    - content.code.annotate # Enable code annotations for a specific block
+    - header.autohide # Hide header when scrolling
+    - navigation.expanded # Expand all sections in sidebar by default
+    - navigation.footer # Footer with navigation links
+    - navigation.indexes # Combine index page with nav sidebar
+    - navigation.instant # Load requests with XHR without reloading page
+    - navigation.sections # Top level sections rendered as group in sidebar
+    - navigation.tabs # Top level sections rendered as navbar
+    - navigation.tabs.sticky # Tabs visible on scroll
+    - navigation.top # Back to top button
+    - navigation.tracking # Adds url#anchor to address bar
+    - navigation.expand # Expand all collapsed sections by default
+    - navigation.path # Show current path in nav bar
+    - toc.follow # Highlight current section in table of contents
+    # - toc.integrate # Nav bar is always rendered on the left
+    - search.highlight # Highlight occurances in result when searching for a term
+    - search.suggest # Suggest results in search
+  custom_dir: docs/overrides
+
+plugins:
+  - awesome-nav
+  - search
+  - git-revision-date-localized:
+      type: timeago
+      enable_creation_date: true
+  - glightbox
+  - privacy
+extra:
+  social:
+    - name: GitHub repository
+      icon: fontawesome/brands/github
+      link: https://github.com/WGBH-MLA/aapb-deploy/
+    - name: GBH Media Library & Archives
+      icon: gbh-archives-logo
+      link: https://www.wgbh.org/foundation/archives
+  version:
+    provider: mike
+
+extra_css:
+  - style/gbh.css
+  - style/github.css
+  - style/kube.css
+  - style/todo.css
