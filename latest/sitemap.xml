@@ -2,50 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/about/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/about/architecture/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/guides/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/guides/argo/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/guides/elastic/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/guides/helm/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/ref/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/tutorials/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/tutorials/helm/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/tutorials/quickstart/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
     <url>
          <loc>https://wgbh-mla.github.io/aapb-deploy/latest/tutorials/upgrade/</loc>
-         <lastmod>2025-09-10</lastmod>
+         <lastmod>2025-09-11</lastmod>
     </url>
 </urlset>
