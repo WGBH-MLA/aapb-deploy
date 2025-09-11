@@ -1,0 +1,29 @@
+apiVersion: v1
+entries:
+  aapb:
+  - annotations:
+      artifacthub.io/changes: |
+        - Initial chart
+    apiVersion: v2
+    created: "2025-09-11T16:36:22.187541435Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.2.0
+    description: American Archive of Public Broadcasting Helm Chart
+    digest: 146b23908f0da4415a3b7f65d0d68a855c21b0feae9f8bd7200b841e99fbe0f6
+    home: https://wgbh-mla.github.io/aapb-deploy/
+    icon: https://wgbh-mla.github.io/aapb-deploy/latest/assets/aapb-logo.png
+    keywords:
+    - remix
+    - archive
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: aapb
+    sources:
+    - https://github.com/WGBH-MLA/aapb-deploy
+    urls:
+    - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.0.1/aapb-0.0.1.tgz
+    version: 0.0.1
+generated: "2025-09-11T16:36:22.187550041Z"
