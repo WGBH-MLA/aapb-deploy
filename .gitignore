@@ -1,4 +1,6 @@
-.venv/
 .cache/
-charts/**/charts/
+.venv/
 site/
+
+charts/**/charts/
+*.tgz

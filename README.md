@@ -6,7 +6,10 @@ Deployment documentation for the American Archive of Public Broadcasting (AAPB) 
 
 ## Links
 
-- Website code: [github.com/WGBH-MLA/AAPB2](https://github.com/WGBH-MLA/AAPB2)
+- Website: [americanarchive.org](https://americanarchive.org/)
+- Demo: [aapb.dev.wgbh-mla.org](https://aapb.dev.wgbh-mla.org/)
+- Code: [github.com/WGBH-MLA/dream-aapb](https://github.com/WGBH-MLA/dream-aapb)
+- Documentation: [wgbh-mla.github.io/aapb-deploy](https://wgbh-mla.github.io/aapb-deploy)
 
 ## Credits
 

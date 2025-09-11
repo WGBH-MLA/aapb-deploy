@@ -1,0 +1,78 @@
+global:
+  host: dev.wgbh-mla.org
+app-template:
+  controllers:
+    # frontend deployment: Remix web application
+    frontend:
+      containers:
+        main: 
+          envFrom:
+          - configMapRef:
+              identifier: frontend
+          image:
+            repository: ghcr.io/wgbh-mla/dream-aapb
+            tag: main
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                periodSeconds: 60
+                httpGet:
+                  path: /health
+                  port: 3000
+            startup:
+              enabled: true
+              custom: true
+              spec:
+                initialDelaySeconds: 3
+                periodSeconds: 3
+                failureThreshold: 10
+                httpGet:
+                  path: /health
+                  port: 3000
+      defaultContainerOptionsStrategy: merge
+      defaultContainerOptions:
+        image:
+          pullPolicy: Always
+        resources:
+          limits:
+            cpu: '1'
+            memory: 1Gi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+  configMaps:
+    frontend:
+      data:
+        NODE_ENV: production
+        AAPB_API_URL: 'http://api.aapb'
+        AAPB_COOKIE_CONSENT_ID: ''
+        ES_API_KEY: ''
+        ES_INDEX: aapb
+        ES_URL: 'http://elastic.elastic'
+        ORGAN_URL: 'http://organ.organ'
+  service:
+    frontend:
+      controller: frontend
+      ports:
+        http:
+          port: 80
+          targetPort: 3000
+  ingress:
+    frontend:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      hosts:
+      - host: '{{ template "aapb.url" . }}'
+        paths:
+        - path: /
+          service:
+            identifier: frontend
+      tls:
+      - secretName: '{{ template "aapb.name" . }}-tls'
+        hosts:
+        - '{{ template "aapb.url" . }}'
+
+# Override the name generator for object in the release. default {{ .Release.Name }}
+nameOverride: null
