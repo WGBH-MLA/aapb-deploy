@@ -550,46 +550,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#create-a-namespace" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Create a namespace
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#argo-cd-recommended" class="md-nav__link">
+  <a href="#install-with-argo-cd-recommended" class="md-nav__link">
     <span class="md-ellipsis">
-      Argo CD (Recommended)
+      Install with Argo CD (Recommended)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#helm" class="md-nav__link">
+  <a href="#install-with-helm" class="md-nav__link">
     <span class="md-ellipsis">
-      Helm
+      Install with Helm
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Helm">
+    <nav class="md-nav" aria-label="Install with Helm">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#add-helm-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Add Helm Repository
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-namespace" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a namespace
     </span>
   </a>
   
@@ -996,46 +987,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#create-a-namespace" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      Create a namespace
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#argo-cd-recommended" class="md-nav__link">
+  <a href="#install-with-argo-cd-recommended" class="md-nav__link">
     <span class="md-ellipsis">
-      Argo CD (Recommended)
+      Install with Argo CD (Recommended)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#helm" class="md-nav__link">
+  <a href="#install-with-helm" class="md-nav__link">
     <span class="md-ellipsis">
-      Helm
+      Install with Helm
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Helm">
+    <nav class="md-nav" aria-label="Install with Helm">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#add-helm-repository" class="md-nav__link">
     <span class="md-ellipsis">
       Add Helm Repository
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-namespace" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a namespace
     </span>
   </a>
   
@@ -1075,48 +1057,55 @@
 
 
 <h1 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">¶</a></h1>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h2>
-<p>These instructions assume you have a working Kubernetes cluster and <code>kubectl</code>, configured to connect to your cluster.</p>
+<p>This guide provides a quick overview of how to deploy the AAPB (American Archive of Public Broadcasting) application using either Argo CD or Helm.</p>
 <p>There are two main ways to deploy the AAPB application:
 1. Using Argo CD (recommended)
 2. Using Helm</p>
-<h2 id="argo-cd-recommended">Argo CD (Recommended)<a class="headerlink" href="#argo-cd-recommended" title="Permanent link">¶</a></h2>
-<ol>
-<li>Login to the Argo CD web interface: <a href="https://cd.dev.wgbh-mla.org">cd.dev.wgbh-mla.org</a></li>
-<li>Create a new application in Argo CD with the following settings:</li>
-<li><strong>Application Name</strong>: <code>aapb</code></li>
-<li><strong>Project</strong>: <code>aapb</code></li>
-<li><strong>Sync Policy</strong>: Automatic</li>
-<li><strong>Repo URL</strong>: <code>https://wgbh-mla.github.io/aapb-deploy/</code><ul>
-<li>Make sure to select <code>Helm</code> as the type, not <code>Git</code></li>
-</ul>
-</li>
-<li><strong>Target Revision</strong>: Use the latest helm chart version</li>
-<li><strong>Chart</strong>: <code>aapb</code></li>
-</ol>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Create Argo CD Application" src="../../images/argocd-create-app.png"></a></p>
-<ol>
-<li>Set other options for your deployment like <strong>Cluster</strong> and <strong>Namespace</strong></li>
-</ol>
-<h2 id="helm">Helm<a class="headerlink" href="#helm" title="Permanent link">¶</a></h2>
-<h3 id="add-helm-repository">Add Helm Repository<a class="headerlink" href="#add-helm-repository" title="Permanent link">¶</a></h3>
-<p>Add the Helm repository for the AAPB application:
-</p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>aapb<span class="w"> </span>https://wgbh-mla.github.io/aapb-deploy/
-helm<span class="w"> </span>repo<span class="w"> </span>update
-</code></pre></div><p></p>
+<details class="prerequisites" open="open">
+<summary>Prerequisites</summary>
+<p>These instructions assume you have a working Kubernetes cluster and admin access to it.</p>
+<p>The <code>kubectl</code> commands can be adapted for use with <code>k9s</code> or any other Kubernetes management tool.</p>
+</details>
 <details class="kube">
 <summary>Namespaces</summary>
+<p>Creating a namespace is optional but recommended to keep resources organized and separated from other applications.</p>
+<p>This also allows you to easily uninstall the application and all its resources by simply deleting the namespace.</p>
 <h3 id="create-a-namespace">Create a namespace<a class="headerlink" href="#create-a-namespace" title="Permanent link">¶</a></h3>
 <p>Create a new namespace, in this case: <code>aapb</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>namespace<span class="w"> </span>aapb
 </code></pre></div>
 <p>Set the current context to the new namespace:
 </p><div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>config<span class="w"> </span>set-context<span class="w"> </span>--current<span class="w"> </span>--namespace<span class="o">=</span>aapb
-
-<span class="c1"># Verify the current context</span>
-kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--minify<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>namespace:
+</code></pre></div><p></p>
+<p>Verify the current context
+</p><div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"> </span>--minify<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>namespace:
 </code></pre></div><p></p>
 </details>
+<h2 id="install-with-argo-cd-recommended">Install with Argo CD (Recommended)<a class="headerlink" href="#install-with-argo-cd-recommended" title="Permanent link">¶</a></h2>
+<ol>
+<li>Login to the Argo CD web interface: <a href="https://cd.dev.wgbh-mla.org">cd.dev.wgbh-mla.org</a></li>
+<li>Create a new application in Argo CD with the following settings:<ul>
+<li><strong>Application Name</strong>: <code>aapb</code></li>
+<li><strong>Project</strong>: <code>aapb</code></li>
+<li><strong>Sync Policy</strong>: Automatic</li>
+<li><strong>Repo URL</strong>: <code>https://wgbh-mla.github.io/aapb-deploy/</code></li>
+<li>Make sure to select <code>Helm</code> as the type, not <code>Git</code></li>
+<li><strong>Target Revision</strong>: Use the latest helm chart version</li>
+<li><strong>Chart</strong>: <code>aapb</code></li>
+</ul>
+</li>
+<li>Set other options for your deployment like <strong>Cluster</strong> and <strong>Namespace</strong></li>
+<li>Click <strong>Create</strong> to deploy the application</li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Create Argo CD Application" src="../../images/argocd-create-app.png"></a></p>
+<p>The application will be deployed automatically. You can monitor the progress in the Argo CD web interface.</p>
+<h2 id="install-with-helm">Install with  Helm<a class="headerlink" href="#install-with-helm" title="Permanent link">¶</a></h2>
+<p>Installing the AAPB application using Helm is straightforward. Follow the steps below:</p>
+<h3 id="add-helm-repository">Add Helm Repository<a class="headerlink" href="#add-helm-repository" title="Permanent link">¶</a></h3>
+<p>Add the Helm repository for the AAPB application:
+</p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>aapb<span class="w"> </span>https://wgbh-mla.github.io/aapb-deploy/
+helm<span class="w"> </span>repo<span class="w"> </span>update
+</code></pre></div><p></p>
 <h3 id="install-the-application">Install the Application<a class="headerlink" href="#install-the-application" title="Permanent link">¶</a></h3>
 <p>Install the AAPB application using Helm:
 </p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>aapb<span class="w"> </span>aapb/aapb<span class="w"> </span>-n<span class="w"> </span>aapb
@@ -1143,7 +1132,7 @@ kubectl<span class="w"> </span>config<span class="w"> </span>view<span class="w"
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="September 11, 2025 15:24:52 UTC"><span class="timeago" datetime="2025-09-11T15:24:52+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 11, 2025 15:24:52 UTC">2025-09-11</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="September 25, 2025 19:46:45 UTC"><span class="timeago" datetime="2025-09-25T19:46:45+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="September 25, 2025 19:46:45 UTC">2025-09-25</span>
   </span>
 
     
