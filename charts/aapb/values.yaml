@@ -45,7 +45,7 @@ app-template:
       replicas: null
       strategy: RollingUpdate
       rollingUpdate:
-        unavailable: 1
+        unavailable: 0
         surge: 5
   configMaps:
     frontend:

@@ -1,7 +1,7 @@
 apiVersion: v2
 name: aapb
 description: American Archive of Public Broadcasting Helm Chart
-version: 0.0.3
+version: 0.0.4
 dependencies:
 - name: app-template
   version: 4.2.0
@@ -19,4 +19,4 @@ sources:
 
 annotations:
   artifacthub.io/changes: |
-    - Adds replicas value to frontend deployment (default: null)
+    - Sets default RollingUpdate unavailable: 0
