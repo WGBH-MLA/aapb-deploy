@@ -3,6 +3,31 @@ entries:
   aapb:
   - annotations:
       artifacthub.io/changes: |
+        - Sets default RollingUpdate unavailable: 0
+    apiVersion: v2
+    created: "2025-09-25T22:12:55.017095394Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.2.0
+    description: American Archive of Public Broadcasting Helm Chart
+    digest: 914f0f78160845f952547df6990215c1e7f7991fffa1a70fbd206930cbde8360
+    home: https://wgbh-mla.github.io/aapb-deploy/
+    icon: https://wgbh-mla.github.io/aapb-deploy/latest/assets/aapb-logo.png
+    keywords:
+    - remix
+    - archive
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: aapb
+    sources:
+    - https://github.com/WGBH-MLA/aapb-deploy
+    urls:
+    - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.0.4/aapb-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      artifacthub.io/changes: |
         - Adds replicas value to frontend deployment (default: null)
     apiVersion: v2
     created: "2025-09-25T20:54:22.599843441Z"
@@ -76,4 +101,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.0.1/aapb-0.0.1.tgz
     version: 0.0.1
-generated: "2025-09-25T20:54:22.599861916Z"
+generated: "2025-09-25T22:12:55.017116663Z"
