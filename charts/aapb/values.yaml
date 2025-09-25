@@ -31,10 +31,6 @@ app-template:
                 httpGet:
                   path: /health
                   port: 3000
-      strategy: RollingUpdate
-      rollingUpdate:
-        unavailable: 1
-        surge: 5
       defaultContainerOptionsStrategy: merge
       defaultContainerOptions:
         image:
@@ -46,6 +42,11 @@ app-template:
           requests:
             cpu: 50m
             memory: 50Mi
+      replicas: null
+      strategy: RollingUpdate
+      rollingUpdate:
+        unavailable: 1
+        surge: 5
   configMaps:
     frontend:
       data:
