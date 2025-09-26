@@ -1,10 +1,10 @@
 apiVersion: v2
 name: aapb
 description: American Archive of Public Broadcasting Helm Chart
-version: 0.0.4
+version: 0.1.0
 dependencies:
 - name: app-template
-  version: 4.2.0
+  version: 4.3.0
   repository: https://bjw-s-labs.github.io/helm-charts/
 home: https://wgbh-mla.github.io/aapb-deploy/
 icon: https://wgbh-mla.github.io/aapb-deploy/latest/assets/aapb-logo.png
@@ -19,4 +19,10 @@ sources:
 
 annotations:
   artifacthub.io/changes: |
-    - Sets default RollingUpdate unavailable: 0
+    - kind: changed
+      description: Bump app-template dependency to 4.3.0
+      links:
+      - name: GitHub Release
+        url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/v0.1.0
+    - kind: added
+      description: Added chart README with install instructions
