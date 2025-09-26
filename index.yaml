@@ -3,7 +3,13 @@ entries:
   aapb:
   - annotations:
       artifacthub.io/changes: |
-        - "Sets default RollingUpdate unavailable = 0"
+        - kind: fixed
+          description: "Sets default RollingUpdate unavailable to 0"
+          links:
+          - name: GitHub Release
+            url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/aapb-0.0.4
+          - name: GitHub Commit
+            url: https://github.com/WGBH-MLA/aapb-deploy/commit/b0b1671558ffafbce522debb72ec880019780372
     apiVersion: v2
     created: "2025-09-25T22:12:55.017095394Z"
     dependencies:
@@ -28,7 +34,13 @@ entries:
     version: 0.0.4
   - annotations:
       artifacthub.io/changes: |
-        - "Adds replicas value to frontend deployment (default null)"
+        - kind: added
+          description: Adds replicas value to frontend deployment (default: null)
+          links:
+          - name: GitHub Release
+            url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/aapb-0.0.3
+          - name: GitHub Commit
+            url: https://github.com/WGBH-MLA/aapb-deploy/commit/fb9e0894629ee1916e7a5b30c3398d595be55d0c
     apiVersion: v2
     created: "2025-09-25T20:54:22.599843441Z"
     dependencies:
