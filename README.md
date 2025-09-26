@@ -1,4 +1,5 @@
 # AAPB: Deploy
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/aapb)](https://artifacthub.io/packages/search?repo=aapb)
 
 ## About
 
@@ -9,6 +10,7 @@ Deployment documentation for the American Archive of Public Broadcasting (AAPB) 
 - Website: [americanarchive.org](https://americanarchive.org/)
 - Demo: [aapb.dev.wgbh-mla.org](https://aapb.dev.wgbh-mla.org/)
 - Code: [github.com/WGBH-MLA/dream-aapb](https://github.com/WGBH-MLA/dream-aapb)
+- Artifact Hub: [artifacthub.io/packages/helm/aapb/aapb](https://artifacthub.io/packages/helm/aapb/aapb)
 - Documentation: [wgbh-mla.github.io/aapb-deploy](https://wgbh-mla.github.io/aapb-deploy)
 
 ## Credits

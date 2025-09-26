@@ -1,4 +1,6 @@
 # Home
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/aapb)](https://artifacthub.io/packages/search?repo=aapb)
+
 ## About
 
 Helm Charts and deployment documentation for the American Archive of Public Broadcasting (AAPB)
@@ -10,6 +12,7 @@ Helm Charts and deployment documentation for the American Archive of Public Broa
 - User documentation: TODO
 - Source code: [github.com/WGBH-MLA/dream-aapb](https://github.com/WGBH-MLA/dream-aapb)
 - Helm chart: [wgbh-mla.github.io/aapb-deploy](https://wgbh-mla.github.io/aapb-deploy/)
+- Artifact Hub: [artifacthub.io/packages/helm/aapb/aapb](https://artifacthub.io/packages/helm/aapb/aapb)
 
 ## Documentation
 - [Quickstart](tutorials/quickstart.md) for installation instructions
