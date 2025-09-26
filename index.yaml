@@ -3,7 +3,7 @@ entries:
   aapb:
   - annotations:
       artifacthub.io/changes: |
-        - "Sets default RollingUpdate unavailable: 0"
+        - "Sets default RollingUpdate unavailable = 0"
     apiVersion: v2
     created: "2025-09-25T22:12:55.017095394Z"
     dependencies:
@@ -28,7 +28,7 @@ entries:
     version: 0.0.4
   - annotations:
       artifacthub.io/changes: |
-        - "Adds replicas value to frontend deployment (default: null)"
+        - "Adds replicas value to frontend deployment (default null)"
     apiVersion: v2
     created: "2025-09-25T20:54:22.599843441Z"
     dependencies:
