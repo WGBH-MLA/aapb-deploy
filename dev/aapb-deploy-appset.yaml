@@ -1,0 +1,37 @@
+# aapb-deploy AppSet
+# This creates an application for every PR in the aapb-deploy repo
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: aapb-deploy-stage
+  namespace: argo-cd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - pullRequest:
+      github:
+        owner: wgbh-mla
+        repo: aapb-deploy
+      values:
+        repo: aapb-deploy
+  template:
+    metadata:
+      name: '{{ .values.repo }}-pr-{{ .number }}'
+    spec:
+      project: aapb
+      source:
+        repoURL: https://github.com/WGBH-MLA/aapb-deploy
+        targetRevision: '{{ .branch }}'
+        path: charts/aapb
+        helm:
+          valuesObject:
+            global:
+              host: stage.dev.wgbh-mla.org
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: aapb
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

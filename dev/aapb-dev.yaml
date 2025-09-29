@@ -1,0 +1,25 @@
+# aapb-dev Application
+# This deploys the latest stable version of AAPB for testing and development
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aapb-dev
+  namespace: argo-cd
+spec:
+  project: aapb
+  source:
+    repoURL: https://wgbh-mla.github.io/aapb-deploy
+    chart: aapb
+    targetRevision: 0.0.3
+    helm:
+      valuesObject:
+        elasticsearch:
+          url: https://elastic.dev.wgbh-mla.org
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: aapb
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
