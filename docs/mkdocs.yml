@@ -70,7 +70,7 @@ theme:
     # - toc.integrate # Nav bar is always rendered on the left
     - search.highlight # Highlight occurances in result when searching for a term
     - search.suggest # Suggest results in search
-  custom_dir: docs/overrides
+  custom_dir: overrides
 
 plugins:
   - awesome-nav
