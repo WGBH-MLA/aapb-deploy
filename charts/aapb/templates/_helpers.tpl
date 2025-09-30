@@ -6,12 +6,12 @@ Create the name of the chart: ReleaseName or nameOverride
 {{- end -}}
 
 {{/*
-Create the frontend url: ReleaseName.host
+Create the frontend url. Default: {global.url} or {ReleaseName}.{host}
 */}}
 {{- define "aapb.url" -}}
 {{- if .Values.global.url -}}
 {{- .Values.global.url -}}
 {{- else -}}
-{{- printf "%s.%s" (include "aapb.name" .) .Values.global.host -}}
+{{- printf "%s.%s" (include "aapb.name" . | replace "." "-") .Values.global.host -}}
 {{- end -}}
 {{- end -}}
