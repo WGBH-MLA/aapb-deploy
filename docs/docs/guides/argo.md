@@ -27,4 +27,4 @@ If the new image is in a different repository, update the image repository param
 ## Updating Parameters
 In addition to the image tag and repository, other parameters can be modified under the [Parameters tab](https://cd.dev.wgbh-mla.org/applications/argo-cd/aapb?view=tree&resource=&node=argoproj.io%2FApplication%2Fargo-cd%2Faapb%2F0&tab=parameters) in the ArgoCD web interface. These parameters correspond to the values in the Helm chart's `values.yaml` file.
 
-![Argo CD Parameters](../images/argocd-parameters.png)
+![Argo CD Parameters](argocd-parameters.png)
