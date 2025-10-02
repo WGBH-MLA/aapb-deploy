@@ -3,7 +3,7 @@
 This section provides information about the AAPB deployment, architecture, and the organizations involved in its development and maintenance, as well as links to additional resources and documentation.
 
 ## Architecture
-See the [Architecture Overview](architecture.md) for a high-level description of the AAPB system architecture.
+See the [Architecture Overview](architecture/) for a high-level description of the AAPB system architecture.
 
 ## Organizations
 ### AAPB

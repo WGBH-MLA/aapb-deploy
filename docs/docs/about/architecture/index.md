@@ -6,8 +6,13 @@ This section provides a high-level overview of the architecture of the AAPB appl
 
 The AAPB application is deployed on a Kubernetes cluster using Helm charts for package management and Argo CD for continuous deployment.
 
-## GitOps
+The following diagram illustrates the kubernetes architecture of a single AAPB instance:
 
-The following diagram illustrates the GitOps architecture of the AAPB application:
+![AAPB Instance Deployment Architecture](aapb-instance-deployment.svg)
+
+## GitOps
+Deployments are managed using a GitOps strategy, with Argo CD Applications.
+
+The following diagram illustrates the GitOps architecture of the [aapb-deploy repository](https://github.com/WGBH-MLA/aapb-deploy/):
 
 ![GitOps Architecture](gitops-architecture.svg)
