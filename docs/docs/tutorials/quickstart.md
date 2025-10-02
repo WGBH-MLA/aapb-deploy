@@ -1,7 +1,7 @@
 # Quickstart
 This guide provides a quick overview of how to deploy the AAPB (American Archive of Public Broadcasting) application.
 
-For an overview of the application architecture and GitOps structure, see the [Architecture Overview](../../about/architecture/).
+For an overview of the application architecture and GitOps structure, see the [Architecture Overview](../architecture/index.md).
 
 There are two main ways to deploy the AAPB application:
 1. Using Argo CD (recommended)

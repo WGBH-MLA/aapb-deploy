@@ -1,6 +1,9 @@
+# flatten_single_child_sections: true 
 nav:
-  - index.md
+  - Home:
+    - index.md
+    - about.md
+    - architecture
   - tutorials
   - guides
   - Reference: ref
-  - about
