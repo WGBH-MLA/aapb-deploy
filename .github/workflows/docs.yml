@@ -4,21 +4,14 @@ on:
   pull_request:
     branches:
       - main
-      - docs
     paths:
       - docs/**
-      - pyproject.toml
-      - mkdocs.yml
-      - uv.lock
   push:
     branches:
       - main
       - docs
     paths:
       - docs/**
-      - pyproject.toml
-      - mkdocs.yml
-      - uv.lock
   workflow_dispatch:
 
 concurrency:
@@ -27,30 +20,28 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./docs
     steps:
       - name: 📰 Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.x
-
       - name: 😎 Install uv
         uses: astral-sh/setup-uv@v6
 
       - name: 🚧 Install dependencies
-        run: uv sync --locked --group docs
+        run: uv sync --locked
 
       - name: 🛠 Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: 🧵 Set version string
-        run: echo VERSION_TITLE=$(mike list | grep latest) >> $GITHUB_ENV
+      - name: 🧵 Get current version string
+        run: echo VERSION_NAME=$(uv run mike list latest) >> $GITHUB_ENV
 
       - name: 🏗️ Deploy
-        run: uv run mike deploy --push --update-aliases ${VERSION_TITLE%\[latest\]} latest
+        run: uv run mike deploy --push --update-aliases "${VERSION_NAME% \[latest\]}" latest

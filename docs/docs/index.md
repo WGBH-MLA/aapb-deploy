@@ -19,7 +19,8 @@ Helm Charts and deployment documentation for the American Archive of Public Broa
 - [Tutorials](tutorials/index.md) for additional how-tos and setup instructions
 - [Guides](guides/index.md) for deployment and maintenance operations
 - [Reference](ref/index.md) for technical information
-- [About](about/index.md) for project information and architecture overview
+- [About](about.md) for project and organization information
+- [Architecture](architecture/index.md) for an overview of the deployment infrastructure and GitOps flows
 
 
 ## Credits

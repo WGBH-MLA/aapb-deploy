@@ -3,7 +3,7 @@
 
 ## About
 
-Deployment documentation for the American Archive of Public Broadcasting (AAPB) website: [americanarchive.org](https://americanarchive.org/)
+Deployment files and documentation for the American Archive of Public Broadcasting (AAPB) website: [americanarchive.org](https://americanarchive.org/)
 
 ## Links
 
@@ -12,6 +12,9 @@ Deployment documentation for the American Archive of Public Broadcasting (AAPB) 
 - Code: [github.com/WGBH-MLA/dream-aapb](https://github.com/WGBH-MLA/dream-aapb)
 - Artifact Hub: [artifacthub.io/packages/helm/aapb/aapb](https://artifacthub.io/packages/helm/aapb/aapb)
 - Documentation: [wgbh-mla.github.io/aapb-deploy](https://wgbh-mla.github.io/aapb-deploy)
+
+## Develop Docs
+See [docs/README.md](docs/README.md) for instructions on how to develop, build, and deploy the documentation site.
 
 ## Credits
 

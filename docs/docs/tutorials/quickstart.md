@@ -1,6 +1,7 @@
 # Quickstart
-This guide provides a quick overview of how to deploy the AAPB (American Archive of Public Broadcasting) application using either Argo CD or Helm.
+This guide provides a quick overview of how to deploy the AAPB application.
 
+For an overview of the application architecture and GitOps structure, see the [Architecture Overview](../architecture/index.md).
 
 There are two main ways to deploy the AAPB application:
 1. Using Argo CD (recommended)
@@ -48,7 +49,7 @@ There are two main ways to deploy the AAPB application:
 1. Set other options for your deployment like **Cluster** and **Namespace**
 1. Click **Create** to deploy the application
 
-![Create Argo CD Application](../images/argocd-create-app.png)
+![Create Argo CD Application](argocd-create-app.png)
 
 The application will be deployed automatically. You can monitor the progress in the Argo CD web interface.
 
