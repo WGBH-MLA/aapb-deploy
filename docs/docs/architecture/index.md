@@ -10,6 +10,8 @@ The following diagram illustrates the kubernetes architecture of a single AAPB i
 
 ![AAPB Instance Deployment Architecture](aapb-instance-deployment.svg)
 
+For installation instructions, see the [Quickstart Guide](../tutorials/quickstart.md).
+
 ## GitOps
 Deployments are managed using a GitOps strategy, with Argo CD Applications.
 
