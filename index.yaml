@@ -3,6 +3,66 @@ entries:
   aapb:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Added global.url to override the templated URL
+          links:
+          - name: GitHub Release
+            url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/v0.1.1
+    apiVersion: v2
+    created: "2025-10-03T16:00:03.294386544Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.3.0
+    description: American Archive of Public Broadcasting Helm Chart
+    digest: 6a8d96565336ad609376263a6b5194638234224d861528ca2d5e5b85c325bf22
+    home: https://wgbh-mla.github.io/aapb-deploy/
+    icon: https://wgbh-mla.github.io/aapb-deploy/latest/assets/aapb-logo.png
+    keywords:
+    - remix
+    - archive
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: aapb
+    sources:
+    - https://github.com/WGBH-MLA/aapb-deploy
+    urls:
+    - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.1.1/aapb-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Bump app-template dependency to 4.3.0
+          links:
+          - name: GitHub Release
+            url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/v0.1.0
+        - kind: added
+          description: Added chart README with install instructions
+    apiVersion: v2
+    created: "2025-10-02T19:22:13.08394821Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.3.0
+    description: American Archive of Public Broadcasting Helm Chart
+    digest: 096d5418087564877dca2b30120dddd3e9bbbdf066b9c85f1b699bc0b64204ab
+    home: https://wgbh-mla.github.io/aapb-deploy/
+    icon: https://wgbh-mla.github.io/aapb-deploy/latest/assets/aapb-logo.png
+    keywords:
+    - remix
+    - archive
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: aapb
+    sources:
+    - https://github.com/WGBH-MLA/aapb-deploy
+    urls:
+    - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.1.0/aapb-0.1.0.tgz
+    version: 0.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "Sets default RollingUpdate unavailable to 0"
           links:
@@ -113,4 +173,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.0.1/aapb-0.0.1.tgz
     version: 0.0.1
-generated: "2025-09-25T22:12:55.017116663Z"
+generated: "2025-10-03T16:00:03.29441635Z"
