@@ -7,28 +7,28 @@
       
       
       
-        <link rel="canonical" href="https://wgbh-mla.github.io/aapb-deploy/0.1/tutorials/helm/">
+        <link rel="canonical" href="https://wgbh-mla.github.io/aapb-deploy/0.1/architecture/">
       
       
-        <link rel="prev" href="../quickstart/">
+        <link rel="prev" href="../about/">
       
       
-        <link rel="next" href="../">
+        <link rel="next" href="../tutorials/quickstart/">
       
       
-      <link rel="icon" href="../../assets/aapb-logo-mobile.png">
+      <link rel="icon" href="../assets/aapb-logo-mobile.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>Helm chart deployment - AAPB Deploy</title>
+        <title>Architecture - AAPB Deploy</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,29 +42,29 @@
         
         
         
-        <link rel="stylesheet" href="../../assets/external/fonts.googleapis.com/css.49ea35f2.css">
+        <link rel="stylesheet" href="../assets/external/fonts.googleapis.com/css.49ea35f2.css">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
+      <link rel="stylesheet" href="../css/timeago.css">
     
-      <link rel="stylesheet" href="../../style/gbh.css">
+      <link rel="stylesheet" href="../style/gbh.css">
     
-      <link rel="stylesheet" href="../../style/github.css">
+      <link rel="stylesheet" href="../style/github.css">
     
-      <link rel="stylesheet" href="../../style/kube.css">
+      <link rel="stylesheet" href="../style/kube.css">
     
-      <link rel="stylesheet" href="../../style/todo.css">
+      <link rel="stylesheet" href="../style/todo.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#helm-chart-deployment" class="md-skip">
+        <a href="#architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -108,12 +108,12 @@
             <div class="md-banner__inner md-grid md-typeset">
               
   You're not viewing the latest version.
-  <a href="../../..">
+  <a href="../..">
     <strong>Click here to go to latest.</strong>
   </a>
 
             </div>
-            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL(".."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
           </aside>
         
       </div>
@@ -125,9 +125,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="AAPB Deploy" class="md-header__button md-logo" aria-label="AAPB Deploy" data-md-component="logo">
+    <a href=".." title="AAPB Deploy" class="md-header__button md-logo" aria-label="AAPB Deploy" data-md-component="logo">
       
-  <img src="../../assets/aapb-logo.png" alt="logo">
+  <img src="../assets/aapb-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -144,7 +144,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Helm chart deployment
+              Architecture
             
           </span>
         </div>
@@ -249,11 +249,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../.." class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href=".." class="md-tabs__link">
           
   
   
@@ -271,13 +273,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../quickstart/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../tutorials/quickstart/" class="md-tabs__link">
           
   
   
@@ -299,7 +299,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../guides/" class="md-tabs__link">
+        <a href="../guides/" class="md-tabs__link">
           
   
   
@@ -321,7 +321,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../ref/" class="md-tabs__link">
+        <a href="../ref/" class="md-tabs__link">
           
   
   
@@ -363,9 +363,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AAPB Deploy" class="md-nav__button md-logo" aria-label="AAPB Deploy" data-md-component="logo">
+    <a href=".." title="AAPB Deploy" class="md-nav__button md-logo" aria-label="AAPB Deploy" data-md-component="logo">
       
-  <img src="../../assets/aapb-logo.png" alt="logo">
+  <img src="../assets/aapb-logo.png" alt="logo">
 
     </a>
     AAPB Deploy
@@ -389,6 +389,8 @@
       
   
   
+    
+  
   
   
     
@@ -406,22 +408,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1">
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../.." class="md-nav__link ">
+            <a href=".." class="md-nav__link ">
               
   
   
@@ -434,13 +437,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Home
@@ -456,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../about/" class="md-nav__link">
         
   
   
@@ -476,6 +479,8 @@
                 
   
   
+    
+  
   
   
     
@@ -491,20 +496,21 @@
       
       
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
+          
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3">
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../architecture/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -518,7 +524,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1_3">
             <span class="md-nav__icon md-icon"></span>
             Architecture
@@ -546,8 +552,6 @@
       
   
   
-    
-  
   
   
     
@@ -567,23 +571,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../tutorials/" class="md-nav__link ">
               
   
   
@@ -596,13 +599,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Tutorials
@@ -616,7 +619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quickstart/" class="md-nav__link">
+      <a href="../tutorials/quickstart/" class="md-nav__link">
         
   
   
@@ -636,32 +639,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Helm chart deployment
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../tutorials/helm/" class="md-nav__link">
         
   
   
@@ -672,62 +653,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#values" class="md-nav__link">
-    <span class="md-ellipsis">
-      Values
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uninstall" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uninstall
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -742,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/" class="md-nav__link">
+      <a href="../tutorials/upgrade/" class="md-nav__link">
         
   
   
@@ -805,7 +730,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../guides/" class="md-nav__link ">
+            <a href="../guides/" class="md-nav__link ">
               
   
   
@@ -840,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/argo/" class="md-nav__link">
+      <a href="../guides/argo/" class="md-nav__link">
         
   
   
@@ -863,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/docs/" class="md-nav__link">
+      <a href="../guides/docs/" class="md-nav__link">
         
   
   
@@ -886,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/elastic/" class="md-nav__link">
+      <a href="../guides/elastic/" class="md-nav__link">
         
   
   
@@ -909,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/helm/" class="md-nav__link">
+      <a href="../guides/helm/" class="md-nav__link">
         
   
   
@@ -964,7 +889,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../ref/" class="md-nav__link ">
+            <a href="../ref/" class="md-nav__link ">
               
   
   
@@ -1021,36 +946,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
+  <a href="#deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      Install
+      Deployment
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade" class="md-nav__link">
+  <a href="#gitops" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#values" class="md-nav__link">
-    <span class="md-ellipsis">
-      Values
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uninstall" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uninstall
+      GitOps
     </span>
   </a>
   
@@ -1075,38 +982,17 @@
   
 
 
-<h1 id="helm-chart-deployment">Helm chart deployment<a class="headerlink" href="#helm-chart-deployment" title="Permanent link">¶</a></h1>
-<p><a href="https://artifacthub.io/packages/search?repo=aapb"><img alt="Artifact Hub" src="../../assets/external/img.shields.io/endpoint.65255d73.svg"></a></p>
-<p>AAPB can be deployed as a simple Helm Chart to a Kubernetes cluster.</p>
-<div class="admonition kube">
-<p class="admonition-title">Setup</p>
-<p>If you haven't set up a production environment, follow the steps in <a href="../quickstart/">Quickstart</a> first.</p>
-</div>
-<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">¶</a></h3>
-<p>Add the Helm repository:
-</p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>aapb<span class="w"> </span>https://wgbh-mla.github.io/aapb-deploy
-</code></pre></div><p></p>
-<p>Update the charts:
-</p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>update
-</code></pre></div><p></p>
-<p>Customize the values in <code>values.yaml</code> to your needs. You can also use <code>--set</code> to override values on the command line.
-</p><div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">latest</span>
-</code></pre></div><p></p>
-<p>Install the Helm chart:
-</p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>my-aapb<span class="w"> </span>aapb/aapb
-</code></pre></div><p></p>
-<h3 id="upgrade">Upgrade<a class="headerlink" href="#upgrade" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>my-aapb<span class="w"> </span>aapb/aapb
-</code></pre></div>
-<h3 id="values">Values<a class="headerlink" href="#values" title="Permanent link">¶</a></h3>
-<p>See the <a href="https://github.com/WGBH-MLA/aapb-deploy/blob/main/charts/aapb/values.yaml">values.yaml</a> file for the full list of configurable values and their defaults.</p>
-<h3 id="uninstall">Uninstall<a class="headerlink" href="#uninstall" title="Permanent link">¶</a></h3>
-<p></p><div class="highlight"><pre><span></span><code>helm<span class="w"> </span>uninstall<span class="w"> </span><span class="o">[</span>release-name<span class="o">]</span>
-</code></pre></div>
-... where <code>[release-name]</code> is the name you used when installing the chart (e.g. <code>my-aapb</code>).<p></p>
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h1>
+<p>This section provides a high-level overview of the architecture of the AAPB application, including its components and how they interact with each other.</p>
+<h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">¶</a></h2>
+<p>The AAPB application is deployed on a Kubernetes cluster using Helm charts for package management and Argo CD for continuous deployment.</p>
+<p>The following diagram illustrates the kubernetes architecture of a single AAPB instance:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="AAPB Instance Deployment Architecture" src="aapb-instance-deployment.svg"></a></p>
+<p>For installation instructions, see the <a href="../tutorials/quickstart/">Quickstart Guide</a>.</p>
+<h2 id="gitops">GitOps<a class="headerlink" href="#gitops" title="Permanent link">¶</a></h2>
+<p>Deployments are managed using a GitOps strategy, with Argo CD Applications.</p>
+<p>The following diagram illustrates the GitOps architecture of the <a href="https://github.com/WGBH-MLA/aapb-deploy/">aapb-deploy repository</a>:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="GitOps Architecture" src="gitops-architecture.svg"></a></p>
 
 
 
@@ -1174,7 +1060,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../quickstart/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quickstart">
+          <a href="../about/" class="md-footer__link md-footer__link--prev" aria-label="Previous: About">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -1184,20 +1070,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Quickstart
+                About
               </div>
             </div>
           </a>
         
         
           
-          <a href="../" class="md-footer__link md-footer__link--next" aria-label="Next: Tutorials">
+          <a href="../tutorials/quickstart/" class="md-footer__link md-footer__link--next" aria-label="Next: Quickstart">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Tutorials
+                Quickstart
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1278,14 +1164,14 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "header.autohide", "navigation.expanded", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.expand", "navigation.path", "toc.follow", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "header.autohide", "navigation.expanded", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "navigation.expand", "navigation.path", "toc.follow", "search.highlight", "search.suggest"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
-        <script src="../../js/timeago.min.js"></script>
+        <script src="../js/timeago.min.js"></script>
       
-        <script src="../../js/timeago_mkdocs_material.js"></script>
+        <script src="../js/timeago_mkdocs_material.js"></script>
       
     
   
