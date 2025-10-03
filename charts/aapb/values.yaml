@@ -1,5 +1,9 @@
 global:
+  # Host domain for the deployment. Only used if `url` is not set. 
   host: dev.wgbh-mla.org
+  # Url for the deployment. If set, this overrides the value from `host`
+  url: null
+
 app-template:
   controllers:
     # frontend deployment: Remix web application
