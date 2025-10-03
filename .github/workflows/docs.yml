@@ -40,8 +40,8 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: 🧵 Set version string
+      - name: 🧵 Get current version string
         run: echo VERSION_NAME=$(uv run mike list latest) >> $GITHUB_ENV
 
       - name: 🏗️ Deploy
-        run: uv run mike deploy --push --update-aliases "${VERSION_NAME%\[latest\]}" latest
+        run: uv run mike deploy --push --update-aliases "${VERSION_NAME% \[latest\]}" latest

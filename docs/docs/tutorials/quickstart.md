@@ -1,5 +1,5 @@
 # Quickstart
-This guide provides a quick overview of how to deploy the AAPB (American Archive of Public Broadcasting) application.
+This guide provides a quick overview of how to deploy the AAPB application.
 
 For an overview of the application architecture and GitOps structure, see the [Architecture Overview](../architecture/index.md).
 
