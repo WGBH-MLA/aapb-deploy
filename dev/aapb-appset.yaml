@@ -22,7 +22,7 @@ spec:
       project: aapb
       source:
         repoURL: https://wgbh-mla.github.io/aapb-deploy
-        targetRevision: 0.0.3
+        targetRevision: 0.1.2
         chart: aapb
         helm:
           valuesObject:
