@@ -3,6 +3,37 @@ entries:
   aapb:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: Bump app-template dependency to v4.4.0
+          links:
+          - name: GitHub Release
+            url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/aapb-0.1.2
+        - kind: changed
+          description: Update default AAPB_API_URL and ES_URL in values.yaml
+    apiVersion: v2
+    created: "2025-11-14T21:16:57.359002701Z"
+    dependencies:
+    - name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      version: 4.4.0
+    description: American Archive of Public Broadcasting Helm Chart
+    digest: 485356209634e4f031567edbef977b2498f041b1969a09cbb8b1cfb98ad82881
+    home: https://wgbh-mla.github.io/aapb-deploy/
+    icon: https://wgbh-mla.github.io/aapb-deploy/latest/assets/aapb-logo.png
+    keywords:
+    - remix
+    - archive
+    maintainers:
+    - email: ryan_harbert@wgbh.org
+      name: Harpo
+    name: aapb
+    sources:
+    - https://github.com/WGBH-MLA/aapb-deploy
+    urls:
+    - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.1.2/aapb-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Added global.url to override the templated URL
           links:
@@ -173,4 +204,4 @@ entries:
     urls:
     - https://github.com/WGBH-MLA/aapb-deploy/releases/download/aapb-0.0.1/aapb-0.0.1.tgz
     version: 0.0.1
-generated: "2025-10-03T16:00:03.29441635Z"
+generated: "2025-11-14T21:16:57.359033087Z"
