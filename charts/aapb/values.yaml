@@ -55,11 +55,11 @@ app-template:
     frontend:
       data:
         NODE_ENV: production
-        AAPB_API_URL: 'http://api.aapb'
+        AAPB_API_URL: 'http://aapb-api/api/v2'
         AAPB_COOKIE_CONSENT_ID: ''
         ES_API_KEY: ''
         ES_INDEX: aapb
-        ES_URL: 'http://elastic.elastic'
+        ES_URL: 'http://mla-eck-elasticsearch-es-default.es'
         ORGAN_URL: 'http://organ.organ'
   service:
     frontend:
