@@ -1,7 +1,7 @@
 apiVersion: v2
 name: aapb
 description: American Archive of Public Broadcasting Helm Chart
-version: 0.1.2
+version: 0.1.3
 dependencies:
 - name: app-template
   version: 4.6.2
@@ -20,9 +20,7 @@ sources:
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Bump app-template dependency to v4.4.0
+      description: Bump app-template dependency to v4.6.2
       links:
       - name: GitHub Release
-        url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/aapb-0.1.2
-    - kind: changed
-      description: Update default AAPB_API_URL and ES_URL in values.yaml
+        url: https://github.com/WGBH-MLA/aapb-deploy/releases/tag/aapb-0.1.3
