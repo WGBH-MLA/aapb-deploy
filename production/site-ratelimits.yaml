@@ -1,31 +1,6 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: human-id
-spec:
-  forwardAuth:
-    # Same host the aapb Service resolves to; the check must stay cheap, it runs on every request
-    address: https://aapb-prod.wgbh-mla.org/turnstile_check
-    authRequestHeaders:
-    - Cookie
-    authResponseHeaders:
-    - X-Aapb-Human-Id
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: human-id-ratelimit
-spec:
-  rateLimit:
-    average: 60
-    period: 1m
-    burst: 20
-    sourceCriterion:
-      requestHeaderName: X-Aapb-Human-Id
----
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
   name: private-ratelimit
 spec:
   rateLimit:
@@ -38,14 +13,14 @@ metadata:
   name: public-ratelimit
 spec:
   rateLimit:
-    average: 20
-    burst: 50
+    average: 10
+    burst: 20
     period: 1s
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: instant-ratelimit
+  name: global-ratelimit-1s
 spec:
   rateLimit:
     average: 4
@@ -58,7 +33,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: short-ratelimit
+  name: global-ratelimit-3s
 spec:
   rateLimit:
     average: 8
@@ -71,7 +46,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: medium-ratelimit
+  name: global-ratelimit-10s
 spec:
   rateLimit:
     average: 16
@@ -84,7 +59,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: long-ratelimit
+  name: global-ratelimit-30s
 spec:
   rateLimit:
     average: 30
@@ -97,7 +72,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: high-volume-ratelimit
+  name: global-ratelimit-2m
 spec:
   rateLimit:
     average: 100
@@ -110,7 +85,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: very-high-volume-ratelimit
+  name: global-ratelimit-5m
 spec:
   rateLimit:
     average: 150

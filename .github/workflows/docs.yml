@@ -1,5 +1,5 @@
 # Build and deploy the documentation to GitHub Pages
-name: docs
+name: 📚 docs
 on:
   pull_request:
     branches:

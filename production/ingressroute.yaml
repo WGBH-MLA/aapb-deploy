@@ -20,10 +20,9 @@ spec:
 
   # Exempt from human-id so the challenge can be solved without a redirect loop
   - kind: Rule
-    match: Host(`americanarchive.org`) && (Path(`/turnstile_challenge`) || Path(`/turnstile_verify`) || PathPrefix(`/assets`))
+    match: Host(`americanarchive.org`) && (Path(`/turnstile_challenge`) || Path(`/turnstile_verify`))
     priority: 20
     middlewares:
-    - name: aapb-cache
     - name: public-ratelimit
     services:
     - kind: Service
@@ -34,16 +33,21 @@ spec:
     match: Host(`americanarchive.org`) && PathPrefix(`/catalog`)
     priority: 10
     middlewares:
+    - name: rate-limited-page
     # human-id must precede aapb-cache so the challenge redirect is never cached
     - name: human-id
-    - name: human-id-ratelimit
+    - name: human-id-ratelimit-3s
+    - name: human-id-ratelimit-1m
+    - name: human-id-ratelimit-5m
+    - name: human-id-ratelimit-1h
+    - name: human-id-ratelimit-24h
+    - name: global-ratelimit-1s
+    - name: global-ratelimit-3s
+    - name: global-ratelimit-10s
+    - name: global-ratelimit-30s
+    - name: global-ratelimit-2m
+    - name: global-ratelimit-5m
     - name: aapb-cache
-    - name: instant-ratelimit
-    - name: short-ratelimit
-    - name: medium-ratelimit
-    - name: long-ratelimit
-    - name: high-volume-ratelimit
-    - name: very-high-volume-ratelimit
     services:
     - kind: Service
       name: aapb
