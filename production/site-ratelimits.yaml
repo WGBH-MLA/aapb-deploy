@@ -1,0 +1,96 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: private-ratelimit
+spec:
+  rateLimit:
+    average: 50
+    burst: 100
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: public-ratelimit
+spec:
+  rateLimit:
+    average: 10
+    burst: 20
+    period: 1s
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: global-ratelimit-1s
+spec:
+  rateLimit:
+    average: 4
+    burst: 16
+    period: 1s
+    sourceCriterion:
+      ipStrategy:
+        depth: 1
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: global-ratelimit-3s
+spec:
+  rateLimit:
+    average: 8
+    burst: 32
+    period: 3s
+    sourceCriterion:
+      ipStrategy:
+        depth: 1
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: global-ratelimit-10s
+spec:
+  rateLimit:
+    average: 16
+    burst: 48
+    period: 10s
+    sourceCriterion:
+      ipStrategy:
+        depth: 1
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: global-ratelimit-30s
+spec:
+  rateLimit:
+    average: 30
+    burst: 120
+    period: 30s
+    sourceCriterion:
+      ipStrategy:
+        depth: 1
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: global-ratelimit-2m
+spec:
+  rateLimit:
+    average: 100
+    period: 2m
+    burst: 300
+    sourceCriterion:
+      ipStrategy:
+        depth: 1
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: global-ratelimit-5m
+spec:
+  rateLimit:
+    average: 150
+    burst: 400
+    period: 5m
+    sourceCriterion:
+      ipStrategy:
+        depth: 1

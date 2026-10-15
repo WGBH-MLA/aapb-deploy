@@ -1,0 +1,67 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  labels:
+    argocd.argoproj.io/instance: aapb
+  name: aapb-ingress
+  namespace: aapb
+spec:
+  routes:
+  - kind: Rule
+    match: Host(`americanarchive.org`) && ClientIP(`198.147.175.0/24`, `204.152.12.0/23`, `74.104.110.159`)
+    priority: 100
+    middlewares:
+    - name: aapb-cache
+    - name: private-ratelimit
+    services:
+    - kind: Service
+      name: aapb
+      port: 443
+
+  # Exempt from human-id so the challenge can be solved without a redirect loop
+  - kind: Rule
+    match: Host(`americanarchive.org`) && (Path(`/turnstile_challenge`) || Path(`/turnstile_verify`))
+    priority: 20
+    middlewares:
+    - name: public-ratelimit
+    services:
+    - kind: Service
+      name: aapb
+      port: 443
+
+  - kind: Rule
+    match: Host(`americanarchive.org`) && PathPrefix(`/catalog`)
+    priority: 10
+    middlewares:
+    - name: rate-limited-page
+    # human-id must precede aapb-cache so the challenge redirect is never cached
+    - name: human-id
+    - name: human-id-ratelimit-3s
+    - name: human-id-ratelimit-1m
+    - name: human-id-ratelimit-5m
+    - name: human-id-ratelimit-1h
+    - name: human-id-ratelimit-24h
+    - name: global-ratelimit-1s
+    - name: global-ratelimit-3s
+    - name: global-ratelimit-10s
+    - name: global-ratelimit-30s
+    - name: global-ratelimit-2m
+    - name: global-ratelimit-5m
+    - name: aapb-cache
+    services:
+    - kind: Service
+      name: aapb
+      port: 443
+
+  - kind: Rule
+    match: Host(`americanarchive.org`)
+    priority: 1
+    middlewares:
+    - name: aapb-cache
+    - name: public-ratelimit
+    services:
+    - kind: Service
+      name: aapb
+      port: 443
+  tls:
+    secretName: aapb-tls
