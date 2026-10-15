@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aapb
+spec:
+  externalName: aapb-prod.wgbh-mla.org
+  ports:
+  - name: web
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  type: ExternalName
