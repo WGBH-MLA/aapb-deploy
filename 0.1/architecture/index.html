@@ -963,6 +963,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#production-ingress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Ingress
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production Ingress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#route-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route selection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalog-middleware-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      /catalog middleware chain
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-things-are-defined" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where things are defined
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -984,15 +1026,86 @@
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h1>
 <p>This section provides a high-level overview of the architecture of the AAPB application, including its components and how they interact with each other.</p>
-<p>For installation instructions, see the <a href="../tutorials/quickstart/">Quickstart Guide</a>.</p>
 <h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">¶</a></h2>
 <p>The AAPB application is deployed on a Kubernetes cluster using Helm charts for package management and Argo CD for continuous deployment.</p>
 <p>The following diagram illustrates the kubernetes architecture of a single AAPB instance:</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="AAPB Instance Deployment Architecture" src="aapb-instance-deployment.svg"></a></p>
+<p>For installation instructions, see the <a href="../tutorials/quickstart/">Quickstart Guide</a>.</p>
 <h2 id="gitops">GitOps<a class="headerlink" href="#gitops" title="Permanent link">¶</a></h2>
 <p>Deployments are managed using a GitOps strategy, with Argo CD Applications.</p>
 <p>The following diagram illustrates the GitOps architecture of the <a href="https://github.com/WGBH-MLA/aapb-deploy/">aapb-deploy repository</a>:</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="GitOps Architecture" src="gitops-architecture.svg"></a></p>
+<h2 id="production-ingress">Production Ingress<a class="headerlink" href="#production-ingress" title="Permanent link">¶</a></h2>
+<p>Production traffic for <code>americanarchive.org</code> enters through a Traefik <code>IngressRoute</code> (<a href="https://github.com/WGBH-MLA/aapb-deploy/blob/main/production/ingressroute.yaml">production/ingressroute.yaml</a>). The router with the highest <code>priority</code> that matches a request wins, and each router runs its own middleware chain before forwarding to the <code>aapb</code> Service, an <code>ExternalName</code> for <code>aapb-prod.wgbh-mla.org:443</code>.</p>
+<h3 id="route-selection">Route selection<a class="headerlink" href="#route-selection" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    client(["Host: americanarchive.org"]) --&gt; m100{"&lt;strong&gt;Priority 100&lt;/strong&gt;&lt;br/&gt;GBH IP Address?"}
+
+    m100 --&gt;|"yes"| c100["&lt;strong&gt;aapb-cache&lt;/strong&gt;"] --&gt; l100["&lt;strong&gt;private-ratelimit&lt;/strong&gt;&lt;br/&gt;50/s, burst 100"] --&gt; svc
+    m100 --&gt;|"no"| m20{"&lt;strong&gt;Priority 20&lt;/strong&gt;&lt;br/&gt;/turnstile_challenge or /turnstile_verify?"}
+
+    m20 --&gt;|"yes"| l20["&lt;strong&gt;public-ratelimit&lt;/strong&gt;&lt;br/&gt;10/s, burst 20"] --&gt; svc
+    m20 --&gt;|"no"| m10{"&lt;strong&gt;Priority 10&lt;/strong&gt;&lt;br/&gt;/catalog*?"}
+
+    m10 --&gt;|"yes"| r10["&lt;strong&gt;catalog chain&lt;/strong&gt;&lt;br/&gt;(detailed below)"] --&gt; svc
+    m10 --&gt;|"no"| r1["&lt;strong&gt;Priority 1&lt;/strong&gt;&lt;br/&gt;everything else"] --&gt; c1["&lt;strong&gt;aapb-cache&lt;/strong&gt;"] --&gt; l20
+
+    svc["service: &lt;strong&gt;aapb&lt;/strong&gt;"]</code></pre>
+<p>The priority 20 route has no <code>human-id</code> middleware. The Turnstile challenge and its static assets must stay reachable without a verified cookie, or visitors would be redirected in a loop.</p>
+<h3 id="catalog-middleware-chain"><code>/catalog</code> middleware chain<a class="headerlink" href="#catalog-middleware-chain" title="Permanent link">¶</a></h3>
+<p>Middlewares run top to bottom. <code>human-id</code> runs before <code>aapb-cache</code> so that the challenge redirect is never cached.</p>
+<pre class="mermaid"><code>flowchart TD
+    in(["&lt;strong&gt;/catalog*&lt;/strong&gt;"]) --&gt; rlp["&lt;strong&gt;rate-limited-page&lt;/strong&gt;&lt;br/&gt;replaces any 429 body with the /429 page"]
+    rlp --&gt; hid["&lt;strong&gt;human-id&lt;/strong&gt;&lt;br/&gt;forwardAuth"]
+
+    hid --&gt;|"no valid cookie"| redirect(["302 to /turnstile_challenge"])
+    hid &lt;-.-&gt;|"&lt;strong&gt;GET /turnstile_check&lt;/strong&gt;&lt;br/&gt;sends Cookie, returns X-Aapb-Human-Id"| check[("aapb-prod.wgbh-mla.org")]
+    hid --&gt;|"200 with X-Aapb-Human-Id"| human
+
+    subgraph human["&lt;strong&gt;Human Ratelimits&lt;/strong&gt;&lt;br/&gt;keyed on X-Aapb-Human-Id"]
+        direction TB
+        h1["3/3s, burst 5"] --&gt; h2["10/1m, burst 15"] --&gt; h3["20/5m, burst 30"] --&gt; h4["60/1h, burst 80"] --&gt; h5["180/24h, burst 120"]
+    end
+
+    human --&gt; ip
+
+    subgraph ip["&lt;strong&gt;Global ratelimits&lt;/strong&gt;&lt;br/&gt;Combined /catalog traffic"]
+        direction TB
+        g1["4/1s, burst 16"] --&gt; g2["8/3s, burst 32"] --&gt; g3["16/10s, burst 48"] --&gt; g4["30/30s, burst 120"] --&gt; g5["100/2m, burst 300"] --&gt; g6["150/5m, burst 400"]
+    end
+
+    ip --&gt; cache["aapb-cache"] --&gt; svc["Service aapb"]
+
+    human -.-&gt;|"limit exceeded"| tooMany(["429 Too Many Requests"])
+    ip -.-&gt;|"limit exceeded"| tooMany
+    tooMany -.-&gt;|"body replaced via rate-limited-page"| rlp</code></pre>
+<h3 id="where-things-are-defined">Where things are defined<a class="headerlink" href="#where-things-are-defined" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IngressRoute</code></td>
+<td><a href="https://github.com/WGBH-MLA/aapb-deploy/blob/main/production/ingressroute.yaml">production/ingressroute.yaml</a></td>
+</tr>
+<tr>
+<td><code>rate-limited-page</code>, <code>human-id</code>, <code>human-id-ratelimit-*</code></td>
+<td><a href="https://github.com/WGBH-MLA/aapb-deploy/blob/main/production/human-ratelimits.yaml">production/human-ratelimits.yaml</a></td>
+</tr>
+<tr>
+<td><code>private-ratelimit</code>, <code>public-ratelimit</code>, <code>global-ratelimit-*</code></td>
+<td><a href="https://github.com/WGBH-MLA/aapb-deploy/blob/main/production/site-ratelimits.yaml">production/site-ratelimits.yaml</a></td>
+</tr>
+<tr>
+<td><code>aapb-cache</code></td>
+<td>Defined in the cluster only, not in this repository</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1015,7 +1128,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 6, 2025 21:29:46 UTC"><span class="timeago" datetime="2025-10-06T21:29:46+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 6, 2025 21:29:46 UTC">2025-10-06</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 15, 2026 19:07:56 UTC"><span class="timeago" datetime="2026-10-15T19:07:56+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 15, 2026 19:07:56 UTC">2026-10-15</span>
   </span>
 
     
