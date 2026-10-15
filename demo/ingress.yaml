@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.middlewares: aapb-demo-turnstile-protect@kubernetescrd, aapb-demo-aapb-cache@kubernetescrd
+  name: aapb-ingress
+  namespace: aapb-demo
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: demo.aapb.wgbh-mla.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: aapb
+            port:
+              number: 443
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - demo.aapb.wgbh-mla.org
+    secretName: aapb-tls-production
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aapb-ingress-catalog
+  namespace: aapb-demo
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    traefik.ingress.kubernetes.io/router.middlewares: human-id@kubernetescrd,human-id-ratelimit-3s@kubernetescrd,human-id-ratelimit-1m@kubernetescrd,human-id-ratelimit-5m@kubernetescrd,
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: demo.aapb.wgbh-mla.org
+    http:
+      paths:
+      - path: /catalog
+        pathType: Prefix
+        backend: { service: { name: aapb, port: { number: 443 } } }
+  tls:
+  - hosts: [ demo.aapb.wgbh-mla.org ]
+    secretName: aapb-tls-production
