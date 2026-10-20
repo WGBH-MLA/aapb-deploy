@@ -18,11 +18,11 @@ spec:
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: human-id-ratelimit-3s }
+metadata: { name: human-id-ratelimit-5s }
 spec:
   rateLimit:
     average: 3
-    period: 3s
+    period: 5s
     burst: 5
     sourceCriterion: { requestHeaderName: X-Aapb-Human-Id }
 ---

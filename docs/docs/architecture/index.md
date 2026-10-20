@@ -58,7 +58,7 @@ flowchart TD
 
     subgraph human["<strong>Human Ratelimits</strong><br/>keyed on X-Aapb-Human-Id"]
         direction TB
-        h1["3/3s, burst 5"] --> h2["10/1m, burst 15"] --> h3["20/5m, burst 30"] --> h4["60/1h, burst 80"] --> h5["180/24h, burst 120"]
+        h1["3/5s, burst 5"] --> h2["10/1m, burst 15"] --> h3["20/5m, burst 30"] --> h4["60/1h, burst 80"] --> h5["180/24h, burst 120"]
     end
 
     human --> ip
