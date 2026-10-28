@@ -46,7 +46,7 @@ metadata:
   namespace: aapb-demo
 spec:
   tls:
-    secretName: aapb-tls-production
+    secretName: aapb-demo-tls-production
   routes:
   - kind: Rule
     match: Host(`demo.aapb.wgbh-mla.org`)
