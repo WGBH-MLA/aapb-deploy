@@ -75,5 +75,3 @@ spec:
     - kind: Service
       name: aapb
       port: 443
-  tls:
-    secretName: aapb-tls
