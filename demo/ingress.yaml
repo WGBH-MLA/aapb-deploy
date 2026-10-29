@@ -1,47 +1,6 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: aapb-ingress
-  namespace: aapb-demo
-spec:
-  parentRefs:
-  - name: turnstile
-  routes:
-  - kind: Rule
-    match: Host(`demo.aapb.wgbh-mla.org`)
-    middlewares:
-    - name: aapb-cache
-    services:
-    - name: aapb
-      port: 443
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: aapb-ingress-catalog
-  namespace: aapb-demo
-spec:
-  parentRefs:
-  - name: turnstile
-  routes:
-  - kind: Rule
-    match: Host(`demo.aapb.wgbh-mla.org`) && PathPrefix(`/catalog`)
-    middlewares:
-    - name: rate-limited-page
-    - name: human-id
-    - name: human-id-ratelimit-3s
-    - name: human-id-ratelimit-1m
-    - name: human-id-ratelimit-5m
-    - name: human-id-ratelimit-1h
-    - name: human-id-ratelimit-24h
-    services:
-    - name: aapb
-      port: 443
----
-# Child IngressRoutes attach with parentRefs, so the plugin runs once and its verified-IP cache is shared.
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
   name: turnstile
   namespace: aapb-demo
 spec:
@@ -52,3 +11,36 @@ spec:
     match: Host(`demo.aapb.wgbh-mla.org`)
     middlewares:
     - name: turnstile-protect
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: aapb-ingress
+  namespace: aapb-demo
+spec:
+  parentRefs:
+  - name: turnstile
+  routes:
+  - kind: Rule
+    match: Host(`demo.aapb.wgbh-mla.org`) && PathPrefix(`/catalog`)
+    priority: 10
+    middlewares:
+    - name: rate-limited-page
+    - name: human-id
+    - name: human-id-ratelimit-5s
+    - name: human-id-ratelimit-1m
+    - name: human-id-ratelimit-5m
+    - name: human-id-ratelimit-1h
+    - name: human-id-ratelimit-24h
+    services:
+    - name: aapb
+      port: 443
+  - kind: Rule
+    match: Host(`demo.aapb.wgbh-mla.org`)
+    priority: 1
+    middlewares:
+    - name: aapb-cache
+    - name: public-ratelimit
+    services:
+    - name: aapb
+      port: 443

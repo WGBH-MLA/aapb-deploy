@@ -23,7 +23,7 @@ spec:
   rateLimit:
     average: 3
     period: 5s
-    burst: 5
+    burst: 4
     sourceCriterion: { requestHeaderName: X-Aapb-Human-Id }
 ---
 apiVersion: traefik.io/v1alpha1
