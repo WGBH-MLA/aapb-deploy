@@ -29,7 +29,7 @@ spec:
     middlewares:
     - name: rate-limited-page
     - name: human-id
-    - name: human-id-ratelimit-5s
+    - name: human-id-ratelimit-3s
     - name: human-id-ratelimit-1m
     - name: human-id-ratelimit-5m
     - name: human-id-ratelimit-1h
