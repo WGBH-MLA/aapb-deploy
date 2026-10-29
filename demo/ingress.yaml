@@ -42,8 +42,7 @@ spec:
     middlewares:
     - name: public-ratelimit
     services:
-    - kind: Service
-      name: aapb
+    - name: aapb
       port: 443
 
   - kind: Rule
@@ -55,5 +54,3 @@ spec:
     services:
     - name: aapb
       port: 443
-  tls:
-    secretName: aapb-demo-tls-production
