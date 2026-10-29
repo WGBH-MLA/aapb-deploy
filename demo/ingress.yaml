@@ -28,11 +28,12 @@ spec:
     match: Host(`demo.aapb.wgbh-mla.org`) && PathPrefix(`/catalog`)
     middlewares:
     - name: rate-limited-page
-    - name: ip-ratelimit-5s
-    - name: ip-ratelimit-1m
-    - name: ip-ratelimit-5m
-    - name: ip-ratelimit-1h
-    - name: ip-ratelimit-24h
+    - name: human-id
+    - name: human-id-ratelimit-5s
+    - name: human-id-ratelimit-1m
+    - name: human-id-ratelimit-5m
+    - name: human-id-ratelimit-1h
+    - name: human-id-ratelimit-24h
     services:
     - name: aapb
       port: 443
