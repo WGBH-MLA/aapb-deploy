@@ -15,6 +15,10 @@ spec:
     address: https://aapb-demo.wgbh-mla.org/turnstile_check
     authRequestHeaders: [ Cookie ]
     authResponseHeaders: [ X-Aapb-Human-Id ]
+    # false makes Traefik rebuild X-Forwarded-Proto/Host/Uri itself, which turnstile#check uses for the redirect.
+    trustForwardHeader: false
+    # Only a short redirect body is expected from turnstile#check.
+    maxResponseBodySize: 16384
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
