@@ -35,6 +35,17 @@ spec:
     services:
     - name: aapb
       port: 443
+
+  - kind: Rule
+    match: Host(`demo.aapb.wgbh-mla.org`) && (Path(`/turnstile_challenge`) || Path(`/turnstile_verify`))
+    priority: 5
+    middlewares:
+    - name: public-ratelimit
+    services:
+    - kind: Service
+      name: aapb
+      port: 443
+
   - kind: Rule
     match: Host(`demo.aapb.wgbh-mla.org`)
     priority: 1
@@ -44,3 +55,5 @@ spec:
     services:
     - name: aapb
       port: 443
+  tls:
+    secretName: aapb-demo-tls-production
