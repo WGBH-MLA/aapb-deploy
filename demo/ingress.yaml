@@ -4,6 +4,8 @@ metadata:
   name: turnstile
   namespace: aapb-demo
 spec:
+  entryPoints:
+  - websecure
   tls:
     secretName: aapb-demo-tls-production
   routes:
