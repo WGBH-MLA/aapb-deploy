@@ -9,3 +9,15 @@ spec:
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: aapb-tls-production
+spec:
+  secretName: aapb-demo-tls-production
+  dnsNames:
+  - demo.aapb.wgbh-mla.org
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer

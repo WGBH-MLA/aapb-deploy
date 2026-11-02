@@ -1,47 +1,58 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
-    traefik.ingress.kubernetes.io/router.middlewares: aapb-demo-turnstile-protect@kubernetescrd, aapb-demo-aapb-cache@kubernetescrd
+  name: turnstile
+  namespace: aapb-demo
+spec:
+  entryPoints:
+  - websecure
+  tls:
+    secretName: aapb-demo-tls-production
+  routes:
+  - kind: Rule
+    match: Host(`demo.aapb.wgbh-mla.org`)
+    middlewares:
+    - name: turnstile-protect
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
   name: aapb-ingress
   namespace: aapb-demo
 spec:
-  ingressClassName: traefik
-  rules:
-  - host: demo.aapb.wgbh-mla.org
-    http:
-      paths:
-      - backend:
-          service:
-            name: aapb
-            port:
-              number: 443
-        path: /
-        pathType: Prefix
-  tls:
-  - hosts:
-    - demo.aapb.wgbh-mla.org
-    secretName: aapb-tls-production
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: aapb-ingress-catalog
-  namespace: aapb-demo
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
-    traefik.ingress.kubernetes.io/router.middlewares: aapb-demo-rate-limited-page@kubernetescrd,aapb-demo-human-id@kubernetescrd,aapb-demo-human-id-ratelimit-5s@kubernetescrd,aapb-demo-human-id-ratelimit-1m@kubernetescrd,aapb-demo-human-id-ratelimit-5m@kubernetescrd,    aapb-demo-human-id-ratelimit-1h@kubernetescrd,aapb-demo-human-id-ratelimit-24h@kubernetescrd
-    traefik.ingress.kubernetes.io/router.observability.traceVerbosity: detailed
-spec:
-  ingressClassName: traefik
-  rules:
-  - host: demo.aapb.wgbh-mla.org
-    http:
-      paths:
-      - path: /catalog
-        pathType: Prefix
-        backend: { service: { name: aapb, port: { number: 443 } } }
-  tls:
-  - hosts: [ demo.aapb.wgbh-mla.org ]
-    secretName: aapb-tls-production
+  parentRefs:
+  - name: turnstile
+  routes:
+  - kind: Rule
+    match: Host(`demo.aapb.wgbh-mla.org`) && PathPrefix(`/catalog`)
+    priority: 10
+    middlewares:
+    - name: rate-limited-page
+    - name: human-id
+    - name: human-id-ratelimit-5s
+    - name: human-id-ratelimit-1m
+    - name: human-id-ratelimit-5m
+    - name: human-id-ratelimit-1h
+    - name: human-id-ratelimit-24h
+    services:
+    - name: aapb
+      port: 443
+
+  - kind: Rule
+    match: Host(`demo.aapb.wgbh-mla.org`) && (Path(`/turnstile_challenge`) || Path(`/turnstile_verify`))
+    priority: 5
+    middlewares:
+    - name: public-ratelimit
+    services:
+    - name: aapb
+      port: 443
+
+  - kind: Rule
+    match: Host(`demo.aapb.wgbh-mla.org`)
+    priority: 1
+    middlewares:
+    - name: aapb-cache
+    - name: public-ratelimit
+    services:
+    - name: aapb
+      port: 443

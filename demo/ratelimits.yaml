@@ -1,6 +1,6 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: rate-limited-page }
+metadata: { name: rate-limited-page, namespace: aapb-demo }
 spec:
   errors:
     status: [ "429" ]
@@ -9,59 +9,63 @@ spec:
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: human-id }
+metadata: { name: human-id, namespace: aapb-demo }
 spec:
   forwardAuth:
     address: https://aapb-demo.wgbh-mla.org/turnstile_check
     authRequestHeaders: [ Cookie ]
     authResponseHeaders: [ X-Aapb-Human-Id ]
+    # false makes Traefik rebuild X-Forwarded-Proto/Host/Uri itself, which turnstile#check uses for the redirect.
+    trustForwardHeader: false
+    # Only a short redirect body is expected from turnstile#check.
+    maxResponseBodySize: 16384
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: human-id-ratelimit-5s }
+metadata: { name: human-id-ratelimit-5s, namespace: aapb-demo }
 spec:
   rateLimit:
     average: 3
     period: 5s
-    burst: 5
+    burst: 4
     sourceCriterion: { requestHeaderName: X-Aapb-Human-Id }
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: human-id-ratelimit-1m }
+metadata: { name: human-id-ratelimit-1m, namespace: aapb-demo }
 spec:
   rateLimit:
-    average: 10
+    average: 8
     period: 1m
-    burst: 15
+    burst: 16
     sourceCriterion: { requestHeaderName: X-Aapb-Human-Id }
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: human-id-ratelimit-5m }
+metadata: { name: human-id-ratelimit-5m, namespace: aapb-demo }
 spec:
   rateLimit:
-    average: 20
+    average: 15
     period: 5m
-    burst: 30
+    burst: 20
     sourceCriterion: { requestHeaderName: X-Aapb-Human-Id }
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: human-id-ratelimit-1h }
+metadata: { name: human-id-ratelimit-1h, namespace: aapb-demo }
 spec:
   rateLimit:
-    average: 60
+    average: 40
     period: 1h
-    burst: 80
+    burst: 60
     sourceCriterion: { requestHeaderName: X-Aapb-Human-Id }
 ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
-metadata: { name: human-id-ratelimit-24h }
+metadata: { name: human-id-ratelimit-24h, namespace: aapb-demo }
 spec:
   rateLimit:
-    average: 180
+    average: 90
     period: 24h
-    burst: 120
+    burst: 80
     sourceCriterion: { requestHeaderName: X-Aapb-Human-Id }
